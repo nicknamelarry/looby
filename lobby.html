@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>王凯爱王媛</title>
+    <link href="https://s2.ssl.qhres2.com/static/56662140ef7d5d03.css"  rel="stylesheet">
+    <link href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-100-M/font-awesome/6.0.0/css/all.min.css"  rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'HeiTi';
+            src: local('SimHei'), local('Microsoft YaHei');
+        }
+        
+        body {
+            font-family: 'HeiTi', sans-serif;
+            background-color: #f5e9d9;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"  width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="%23d9c7a7" stroke-width="1"/></svg>');
+            color: #333;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        .container {
+            max-width: 800px;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            background-color: rgba(245, 233, 217, 0.85);
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(217, 199, 167, 0.5);
+            margin: 2rem;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: #d85a7f;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #d85a7f, transparent);
+        }
+        
+        p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: #555;
+        }
+        
+        .heart-btn {
+            background-color: #d85a7f;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(216, 90, 127, 0.3);
+            font-family: 'HeiTi', sans-serif;
+            margin-top: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .heart-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(216, 90, 127, 0.4);
+        }
+        
+        .heart-btn:active {
+            transform: translateY(0);
+        }
+        
+        .heart-btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .heart-btn:hover::before {
+            left: 100%;
+        }
+        
+        .floating-hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .heart {
+            position: absolute;
+            font-size: 1.5rem;
+            color: rgba(216, 90, 127, 0.5);
+            animation: float 8s linear infinite;
+            opacity: 0;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .hidden-message {
+            display: none;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 8px;
+            border-left: 4px solid #d85a7f;
+            animation: fadeIn 1s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .quote {
+            font-style: italic;
+            color: #777;
+            margin: 2rem 0;
+            padding: 1rem;
+            border-left: 3px solid #d9c7a7;
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .signature {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 1.8rem;
+            color: #d85a7f;
+            margin-top: 2rem;
+        }
+        
+        .paper-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"  width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f5e9d9" opacity="0.3"/></svg>');
+            pointer-events: none;
+            z-index: 3;
+        }
+    </style>
+</head>
+<body>
+    <div class="paper-overlay"></div>
+    <div class="floating-hearts" id="hearts-container"></div>
+    
+    <div class="container">
+        <h1>王凯爱王媛</h1>
+        
+        <p>在无数个日夜里，我的心始终为你跳动...</p>
+        
+        <div class="quote">
+            "Je t'aime non seulement pour ce que tu es, mais pour ce que je suis quand nous sommes ensemble."
+            <br>(我爱你不仅因为你是谁，更因为和你在一起时我是谁)
+        </div>
+        
+        <button class="heart-btn" id="loveBtn">点击查看我的心意</button>
+        
+        <div class="hidden-message" id="hiddenMessage">
+            <p>亲爱的王媛：</p>
+            <p>遇见你是我生命中最美好的意外，爱上你是我做过最正确的决定。</p>
+            <p>愿我们的故事，如这羊皮纸般历久弥新，如这粉色般温柔永恒。</p>
+            <p>Je t'aime plus que tout.</p>
+        </div>
+        
+        <div class="signature">永远爱你的 王凯</div>
+    </div>
+ 
+    <script>
+        // 创建浮动爱心 
+        function createHearts() {
+            const container = document.getElementById('hearts-container'); 
+            const heartCount = 15;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div'); 
+                heart.classList.add('heart'); 
+                heart.innerHTML  = '❤';
+                
+                // 随机位置 
+                const startPosX = Math.random()  * 100;
+                const startPosY = Math.random()  * 100 + 100;
+                
+                // 随机大小 
+                const size = Math.random()  * 1.5 + 0.5;
+                
+                // 随机延迟 
+                const delay = Math.random()  * 5;
+                
+                // 随机动画持续时间 
+                const duration = Math.random()  * 5 + 5;
+                
+                heart.style.left  = `${startPosX}%`;
+                heart.style.top  = `${startPosY}%`;
+                heart.style.fontSize  = `${size}rem`;
+                heart.style.animationDelay  = `${delay}s`;
+                heart.style.animationDuration  = `${duration}s`;
+                
+                container.appendChild(heart); 
+            }
+        }
+        
+        // 点击按钮显示隐藏信息 
+        document.getElementById('loveBtn').addEventListener('click',  function() {
+            const message = document.getElementById('hiddenMessage'); 
+            if (message.style.display  === 'block') {
+                message.style.display  = 'none';
+            } else {
+                message.style.display  = 'block';
+                
+                // 点击时创建额外爱心 
+                for (let i = 0; i < 5; i++) {
+                    setTimeout(() => {
+                        const heart = document.createElement('div'); 
+                        heart.classList.add('heart'); 
+                        heart.innerHTML  = '❤';
+                        
+                        const startPosX = 50 + (Math.random()  * 20 - 10);
+                        const startPosY = 80;
+                        
+                        heart.style.left  = `${startPosX}%`;
+                        heart.style.top  = `${startPosY}%`;
+                        heart.style.fontSize  = `${Math.random()  * 1.5 + 1}rem`;
+                        heart.style.animationDuration  = `${Math.random()  * 3 + 3}s`;
+                        heart.style.color  = `rgba(216, 90, 127, ${Math.random()  * 0.5 + 0.5})`;
+                        
+                        document.getElementById('hearts-container').appendChild(heart); 
+                        
+                        // 动画结束后移除 
+                        setTimeout(() => {
+                            heart.remove(); 
+                        }, 5000);
+                    }, i * 200);
+                }
+            }
+        });
+        
+        // 页面加载时初始化 
+        window.addEventListener('load',  function() {
+            createHearts();
+        });
+    </script>
+</body>
+</html>
